@@ -37,7 +37,7 @@ function App() {
             </p>
             <div className="hero-actions">
               <a className="button button-primary" href="#projects">Explore My Work <ArrowUpRight size={17} /></a>
-              <a className="button button-secondary" href="/resume.pdf" download><Download size={17} /> Download Resume</a>
+              <a className="button button-secondary" href="/Resume.pdf" download="Resume.pdf"><Download size={17} /> Download Resume</a>
             </div>
             <div className="hero-socials">
               <a href={profile.github} target="_blank" rel="noreferrer" aria-label="GitHub"><Github /></a>
@@ -50,7 +50,18 @@ function App() {
           <div className="hero-visual">
             <div className="orbit orbit-one" /><div className="orbit orbit-two" />
             <div className="profile-frame">
-              <img src="/profile.jpg" alt="Gayathri V profile" onError={(e) => { e.currentTarget.src = "/profile-placeholder.svg"; }} />
+              <img
+                src="/profile.jpeg"
+                alt="Gayathri V profile"
+                onError={(e) => {
+                  if (!e.currentTarget.dataset.retried) {
+                    e.currentTarget.dataset.retried = "1";
+                    e.currentTarget.src = "/profile.jpg";
+                  } else {
+                    e.currentTarget.src = "/profile-placeholder.svg";
+                  }
+                }}
+              />
               <div className="profile-initials">GV</div>
             </div>
             <div className="floating-card float-code"><Code2 size={18} /><span>Building with<br /><b>React.js</b></span></div>
@@ -129,7 +140,7 @@ function App() {
         <section className="section-shell section resume-section" id="resume">
           <div className="resume-banner">
             <div><span className="eyebrow">MY RESUME</span><h2>Want to know more<br />about my journey?</h2><p>Download my resume for a concise overview of my education, skills, and experience.</p></div>
-            <a className="button button-primary" href="/resume.pdf" download><Download size={17} /> Download PDF <ArrowUpRight size={16} /></a>
+            <a className="button button-primary" href="/Resume.pdf" download="Resume.pdf"><Download size={17} /> Download PDF <ArrowUpRight size={16} /></a>
           </div>
         </section>
 
